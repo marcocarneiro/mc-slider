@@ -57,12 +57,17 @@ if( ! class_exists( 'MC_Slider')){
         }
 
         public function uninstall(){
-            
+
         }
     }
 }
 
 //Se a classe já existe, instancia a classe
-if( class_exists( 'MC_Slider')){    
+if( class_exists( 'MC_Slider')){  
+    
+    register_activation_hook(__FILE__, 'MC_Slider', 'activate');
+    register_deactivation_hook(__FILE__, 'MC_Slider', 'deactivate');
+    register_uninstall_hook(__FILE__, 'MC_Slider', 'uninstall');
+    
     $mc_slider = new MC_Slider();
 }
