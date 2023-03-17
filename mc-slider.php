@@ -49,11 +49,11 @@ if( ! class_exists( 'MC_Slider')){
         }
 
         public function activate(){
-
+            update_option( 'rewrite_rules', '');
         }
 
         public function deactivate(){
-
+            flush_rewrite_rules();
         }
 
         public function uninstall(){
@@ -68,6 +68,6 @@ if( class_exists( 'MC_Slider')){
     register_activation_hook(__FILE__, 'MC_Slider', 'activate');
     register_deactivation_hook(__FILE__, 'MC_Slider', 'deactivate');
     register_uninstall_hook(__FILE__, 'MC_Slider', 'uninstall');
-    
+
     $mc_slider = new MC_Slider();
 }
