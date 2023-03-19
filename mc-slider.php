@@ -34,6 +34,7 @@ if(! defined('ABSPATH')){
     exit;
 }
 
+//Se a classe não existe, executa a sua construção
 if( ! class_exists( 'MC_Slider')){
     class MC_Slider{
         //função construtora
@@ -62,7 +63,7 @@ if( ! class_exists( 'MC_Slider')){
     }
 }
 
-//Se a classe já existe, instancia a classe
+//Se a classe já existe, registra os hooks e instancia a classe
 if( class_exists( 'MC_Slider')){  
     
     register_activation_hook(__FILE__, 'MC_Slider', 'activate');
