@@ -40,6 +40,9 @@ if( ! class_exists( 'MC_Slider')){
         //função construtora
         function __construct(){
             $this->define_constants();
+
+            require_once( MC_SLIDER_PATH . 'post-types/class.mc-slider-cpt.php' );
+            $mc_slider_cpt = new MC_Slider_Post_Type();
         }
 
         //Define as constantes utilizadas no plugin
@@ -49,15 +52,16 @@ if( ! class_exists( 'MC_Slider')){
             define( 'MC_SLIDER_VERSION', '1.0.0' );
         }
 
-        public function activate(){
+        public static function activate(){
             update_option( 'rewrite_rules', '');
         }
 
-        public function deactivate(){
+        public static function deactivate(){
             flush_rewrite_rules();
+            unregister_post_type( 'mc-slider' );
         }
 
-        public function uninstall(){
+        public static function uninstall(){
 
         }
     }
@@ -65,10 +69,9 @@ if( ! class_exists( 'MC_Slider')){
 
 //Se a classe já existe, registra os hooks e instancia a classe
 if( class_exists( 'MC_Slider')){  
-    
-    register_activation_hook(__FILE__, 'MC_Slider', 'activate');
-    register_deactivation_hook(__FILE__, 'MC_Slider', 'deactivate');
-    register_uninstall_hook(__FILE__, 'MC_Slider', 'uninstall');
+    register_activation_hook( __FILE__, array('MC_Slider', 'activate') );
+    register_deactivation_hook(__FILE__, array('MC_Slider', 'deactivate'));
+    register_uninstall_hook(__FILE__, array('MC_Slider', 'uninstall')); 
 
     $mc_slider = new MC_Slider();
 }
