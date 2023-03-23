@@ -1,3 +1,6 @@
+<?php
+
+?>
 <table class="form-table mc-slider-metabox">
     <tr>
         <th>
