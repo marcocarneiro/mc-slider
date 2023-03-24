@@ -3,6 +3,8 @@
     $link_url = get_post_meta( $post->ID, 'mc_slider_link_url', true );
 ?>
 <table class="form-table mc-slider-metabox">
+    <?php //CAMPO OCULTO COM NONCE - SEGURANÇA // ?>
+    <input type="hidden" name="mc_slider_nonce" value="<?php echo wp_create_nonce( 'mc_slider_nonce' ); ?>">
     <tr>
         <th>
             <label for="mc_slider_link_text">Link Text</label>
