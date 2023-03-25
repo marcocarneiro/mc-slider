@@ -41,6 +41,8 @@ if( ! class_exists( 'MC_Slider')){
         function __construct(){
             $this->define_constants();
 
+            add_action( 'admin_menu', array( $this, 'add_menu' ) );
+
             require_once( MC_SLIDER_PATH . 'post-types/class.mc-slider-cpt.php' );
             $mc_slider_cpt = new MC_Slider_Post_Type();
         }
@@ -63,6 +65,21 @@ if( ! class_exists( 'MC_Slider')){
 
         public static function uninstall(){
 
+        }
+
+        public function add_menu(){
+            add_menu_page(
+                'MC Slider Options',
+                'MC Slider',
+                'manage_options',
+                'mc_slider_admin',
+                array( $this, 'mc_slider_settings_page' ),
+                'dashicons-images-alt2',
+            );
+        }
+
+        public function mc_slider_settings_page(){
+            echo 'This is a test page';
         }
     }
 }
