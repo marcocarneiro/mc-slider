@@ -45,6 +45,9 @@ if( ! class_exists( 'MC_Slider')){
 
             require_once( MC_SLIDER_PATH . 'post-types/class.mc-slider-cpt.php' );
             $mc_slider_cpt = new MC_Slider_Post_Type();
+
+            require_once( MC_SLIDER_PATH . 'class.mc-slider-settings.php' );
+            $Mc_Slider_Settings = new Mc_Slider_Settings();
         }
 
         //Define as constantes utilizadas no plugin
@@ -90,7 +93,7 @@ if( ! class_exists( 'MC_Slider')){
 
 
         public function mc_slider_settings_page(){
-            
+            require( MC_SLIDER_PATH . 'views/settings-page.php' );
         }
     }
 }
