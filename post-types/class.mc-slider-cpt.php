@@ -33,7 +33,7 @@ if( ! class_exists( 'MC_Slider_Post_Type')){
                     ),
                     'hierarchical' => false,
                     'show_ui' => true,
-                    'show_in_menu' => true,
+                    'show_in_menu' => false,
                     'menu_position' => 10,
                     'show_in_admin_bar' => true,
                     'can_export' => true,

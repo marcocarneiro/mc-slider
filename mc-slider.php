@@ -76,10 +76,21 @@ if( ! class_exists( 'MC_Slider')){
                 array( $this, 'mc_slider_settings_page' ),
                 'dashicons-images-alt2',
             );
+
+            add_submenu_page( 
+                'mc_slider_admin',
+                'Manage Slides',
+                'Manage Slides',
+                'manage_options',
+                'edit.php?post_type=mc-slider',
+                null,
+                null
+            );
         }
 
+
         public function mc_slider_settings_page(){
-            echo 'This is a test page';
+            
         }
     }
 }
