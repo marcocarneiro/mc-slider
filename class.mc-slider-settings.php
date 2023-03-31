@@ -11,6 +11,11 @@ if (!class_exists('Mc_Slider_Settings')) {
         }
 
         public function admin_init(){
+            register_setting( 
+                'mc_slider_group', //option_group
+                'mc_slider_options', //option_name
+                //null //args
+            );
             add_settings_section( 
                 'mc_slider_main_section', //id
                 'Ho does it work?', //title
