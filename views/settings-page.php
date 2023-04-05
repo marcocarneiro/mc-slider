@@ -5,6 +5,7 @@
         <?php
             settings_fields( 'mc_slider_group' );
             do_settings_sections( 'mc_slider_page1' );
+            do_settings_sections( 'mc_slider_page2' );
             submit_button( 'Save Settings' );
         ?>
     </form>
