@@ -47,7 +47,9 @@ if (!class_exists('Mc_Slider_Settings')) {
                 array( $this, 'mc_slider_title_callback' ), //callback
                 'mc_slider_page2', //page id
                 'mc_slider_second_section', //id section
-                null //args
+                array(                    
+                    'label_for' => 'mc_slider_title'
+                )
             );
             add_settings_field( 
                 'mc_slider_bullets', //id
@@ -55,7 +57,9 @@ if (!class_exists('Mc_Slider_Settings')) {
                 array( $this, 'mc_slider_bullets_callback' ), //callback
                 'mc_slider_page2', //page id
                 'mc_slider_second_section', //id section
-                null //args
+                array(                    
+                    'label_for' => 'mc_slider_bullets'
+                )
             );
             add_settings_field( 
                 'mc_slider_style', //id
@@ -63,7 +67,13 @@ if (!class_exists('Mc_Slider_Settings')) {
                 array( $this, 'mc_slider_style_callback' ), //callback
                 'mc_slider_page2', //page id
                 'mc_slider_second_section', //id section
-                null //args
+                array(
+                    'items' => array(
+                        'style-1',
+                        'style-2'
+                    ),
+                    'label_for' => 'mc_slider_style'
+                )
             );
         }
 
@@ -99,22 +109,20 @@ if (!class_exists('Mc_Slider_Settings')) {
             <?php
         }
 
-        public function mc_slider_style_callback(){
+        public function mc_slider_style_callback( $args ){
             ?>
                 <select 
                 name="mc_slider_options[mc_slider_style]" 
                 id="mc_slider_style">
-                    <option value="style-1"
-                    <?php isset( self::$options['mc_slider_style'] ) ? selected( 'style-1', self::$options['mc_slider_style'], true ) : ''; ?>
-                    >                        
-                        Style-1
-                    </option>
-                    <option value="style-2"
-                    <?php isset( self::$options['mc_slider_style'] ) ? selected( 'style-2', self::$options['mc_slider_style'], true ) : ''; ?>
-                    >                        
-                        Style-2
-                    </option>
-
+                    <?php
+                        foreach( $args['items'] as $item):
+                    ?>
+                        <option value="<?php echo esc_attr( $item );?>" 
+                        <?php isset( self::$options['mc_slider_style'] ) ? selected( $item, self::$options['mc_slider_style'], true ): ''; ?>     
+                        >
+                        <?php echo esc_html( ucfirst( $item )); ?>
+                        </option>
+                    <?php endforeach; ?>
                 </select>
             <?php
         }
