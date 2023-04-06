@@ -93,6 +93,14 @@ if( ! class_exists( 'MC_Slider')){
 
 
         public function mc_slider_settings_page(){
+            if( ! current_user_can( 'manage_options' )){
+                return;
+            }
+            if( isset( $_GET['settings-updated'] )){
+                add_settings_error( 'mc_slider_options', 'mc_slider_message', 'Settings Saved', 'success');
+            }
+            settings_errors( 'mc_slider_options' );
+
             require( MC_SLIDER_PATH . 'views/settings-page.php' );
         }
     }

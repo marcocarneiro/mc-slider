@@ -14,7 +14,7 @@ if (!class_exists('Mc_Slider_Settings')) {
             register_setting( 
                 'mc_slider_group', //option_group
                 'mc_slider_options', //option_name
-                //null //args
+                array( $this, 'mc_slider_validate' ) //validation callback
             );
             //Sections of plugin page
             add_settings_section( 
@@ -75,6 +75,31 @@ if (!class_exists('Mc_Slider_Settings')) {
                     'label_for' => 'mc_slider_style'
                 )
             );
+        }
+
+        //validate method for all fields
+        public function mc_slider_validate( $input ){
+            $new_input = array();
+            foreach( $input as $key => $value ){
+                switch( $key ){
+                    case 'mc_slider_title':
+                        if( empty( $value )){
+                            $value = 'Please, type some text';
+                        }
+                        $new_input[$key] = sanitize_text_field( $value );
+                    break;
+                    case 'mc_slider_url':
+                        $new_input[$key] = esc_url( $value );
+                    break;
+                    case 'mc_slider_int':
+                        $new_input[$key] = absint( $value );
+                    break;
+                    default:
+                        $new_input[$key] = sanitize_text_field( $value );
+                    break;
+                }                
+            }
+            return $new_input;
         }
 
         public function mc_slider_shortcode_callback(){
