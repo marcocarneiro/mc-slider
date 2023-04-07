@@ -23,6 +23,11 @@ if( ! class_exists( 'MC_Slider_Shortcode') ){
             if( !empty( $id )){
                 $id = array_map( 'absint', explode( ',', $id ) );
             }
+
+            //build HTML of shortcode on buffer and return
+            ob_start();
+            require( MC_SLIDER_PATH . 'views/mc-slider-shortcode.php' );
+            return ob_get_clean();
         }
 
     }
