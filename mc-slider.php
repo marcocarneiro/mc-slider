@@ -49,7 +49,7 @@ if( ! class_exists( 'MC_Slider')){
             require_once( MC_SLIDER_PATH . 'class.mc-slider-settings.php' );
             $Mc_Slider_Settings = new Mc_Slider_Settings();
 
-            require_once( MC_SLIDER_PATH . 'class.mc-slider-shortcode.php' );
+            require_once( MC_SLIDER_PATH . 'shortcodes/class.mc-slider-shortcode.php' );
             $MC_Slider_Shortcode = new MC_Slider_Shortcode();
         }
 
