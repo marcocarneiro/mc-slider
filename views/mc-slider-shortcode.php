@@ -36,7 +36,7 @@
         </li>
         <?php 
         endwhile; 
-        wp_reset_postdata(  );//restore default loop post
+        wp_reset_postdata(  );//restore default loop posts
     endif; 
     ?>
     </ul>

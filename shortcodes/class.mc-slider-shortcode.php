@@ -27,6 +27,11 @@ if( ! class_exists( 'MC_Slider_Shortcode') ){
             //build HTML of shortcode on buffer and return
             ob_start();
             require( MC_SLIDER_PATH . 'views/mc-slider-shortcode.php' );
+            //enqueue all necessary scripts - register in class construct
+            wp_enqueue_script( 'mc-slider-main-jp' );
+            wp_enqueue_script( 'mc-slider-options-jp' );
+            wp_enqueue_style( 'mc-slider-main-css' );
+            wp_enqueue_style( 'mc-slider-style-css' );
             return ob_get_clean();
         }
 

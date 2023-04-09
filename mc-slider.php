@@ -51,6 +51,8 @@ if( ! class_exists( 'MC_Slider')){
 
             require_once( MC_SLIDER_PATH . 'shortcodes/class.mc-slider-shortcode.php' );
             $MC_Slider_Shortcode = new MC_Slider_Shortcode();
+
+            add_action( 'wp_enqueue_scripts', array($this, 'register_scripts' ), 999 );
         }
 
         //Define as constantes utilizadas no plugin
@@ -105,6 +107,14 @@ if( ! class_exists( 'MC_Slider')){
             settings_errors( 'mc_slider_options' );
 
             require( MC_SLIDER_PATH . 'views/settings-page.php' );
+        }
+
+        public function register_scripts(){
+            //register script to use only include shortcode in page 
+            wp_register_script( 'mc-slider-main-jp', MC_SLIDER_URL . 'vendor/flexslider/jquery.flexslider-min.js', array('jquery'), MC_SLIDER_VERSION, true );
+            wp_register_script( 'mc-slider-options-jp', MC_SLIDER_URL . 'vendor/flexslider/flexslider.js', array('jquery'), MC_SLIDER_VERSION, true );
+            wp_register_style( 'mc-slider-main-css', MC_SLIDER_URL . 'vendor/flexslider/flexslider.css', array(), MC_SLIDER_VERSION, 'all' );
+            wp_register_style( 'mc-slider-style-css', MC_SLIDER_URL . 'assets/css/frontend.css', array(), MC_SLIDER_VERSION, 'all' );
         }
     }
 }
