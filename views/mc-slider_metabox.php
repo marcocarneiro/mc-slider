@@ -1,6 +1,7 @@
 <?php
     $link_text = get_post_meta( $post->ID, 'mc_slider_link_text', true );
     $link_url = get_post_meta( $post->ID, 'mc_slider_link_url', true );
+    $link_newwindow = get_post_meta( $post->ID, 'mc_slider_link_newwindow', true );
 ?>
 <table class="form-table mc-slider-metabox">
     <?php //CAMPO OCULTO COM NONCE - SEGURANÇA // ?>
@@ -33,6 +34,23 @@
             value="<?php echo ( isset( $link_url )) ? esc_html( $link_url ) : ''; ?>"
             required
         >
+        </td>
+    </tr>
+    <tr>
+        <th>
+            <label for="mc_slider_link_newwindow">Open in a new window?</label>
+        </th>
+        <td>
+            <input type="checkbox" 
+                name="mc_slider_link_newwindow" 
+                id="mc_slider_link_newwindow"
+                value="1"
+                <?php
+                    if( isset( $link_newwindow ) ){
+                        checked( '1', $link_newwindow, true );
+                    }                    
+                ?>
+            >
         </td>
     </tr>
 </table>

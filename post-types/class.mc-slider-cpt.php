@@ -80,9 +80,6 @@ if( ! class_exists( 'MC_Slider_Post_Type')){
             }
         }
 
-
-
-
         public function add_meta_boxes(){
             add_meta_box( 
                 'mc_slider_meta_box',
@@ -126,6 +123,9 @@ if( ! class_exists( 'MC_Slider_Post_Type')){
                 $new_link_text = $_POST['mc_slider_link_text'];
                 $old_link_url  = get_post_meta( $post_id, 'mc_slider_link_url', true );
                 $new_link_url = $_POST['mc_slider_link_url'];
+                //checkbox
+                $old_link_newwindow  = get_post_meta( $post_id, 'mc_slider_link_newwindow', true );
+                $new_link_newwindow = $_POST['mc_slider_link_newwindow'];
 
                 if(empty( $new_link_text )){
                     update_post_meta( $post_id, 'mc_slider_link_text', 'Add some text');
@@ -138,8 +138,12 @@ if( ! class_exists( 'MC_Slider_Post_Type')){
                 }else{
                     update_post_meta( $post_id, 'mc_slider_link_url', sanitize_text_field( $new_link_url ), $old_link_url);
                 }
-
                 
+                if(empty( $new_link_newwindow )){
+                    update_post_meta( $post_id, 'mc_slider_link_newwindow', sanitize_text_field('0') );
+                }else{
+                    update_post_meta( $post_id, 'mc_slider_link_newwindow', sanitize_text_field( $new_link_newwindow ), $old_link_newwindow);
+                }
                 
             }
         }

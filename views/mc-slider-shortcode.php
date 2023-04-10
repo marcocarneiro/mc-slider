@@ -16,6 +16,7 @@
             while( $mc_query->have_posts() ): $mc_query->the_post(  );
             $button_text = get_post_meta( get_the_ID(), 'mc_slider_link_text', true );
             $button_url = get_post_meta( get_the_ID(), 'mc_slider_link_url', true );
+            $newwindow = get_post_meta( get_the_ID(), 'mc_slider_link_newwindow', true );
         ?>
         <li>
             <?php the_post_thumbnail( 'full', array( 'class'=>'img-fluid' ) ); ?>
@@ -27,7 +28,8 @@
                         </div>
                         <div class="slider-description">
                             <div class="subtitle"><?php the_content(); ?></div>
-                            <a href="<?php echo esc_attr( $button_url ); ?>" class="link">
+                            <a href="<?php echo esc_attr( $button_url ); ?>" class="link"
+                            <?php echo $newwindow == '1' ? 'target="_blank"' : ''; ?>>
                             <?php echo esc_html( $button_text ); ?></a>
                         </div>
                     </div>
