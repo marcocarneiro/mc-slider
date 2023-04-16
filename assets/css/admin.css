@@ -1,0 +1,9 @@
+.mc-slider-metabox label{
+    color: #f00;
+}
+.mc-slider-metabox td{
+    padding: 5px;
+}
+.mc-slider-metabox th{
+    padding: 10px 10px 5px 0;
+}

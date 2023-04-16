@@ -1,7 +1,10 @@
 <h3>
     <?php echo (!empty( $content )) ? esc_html($content) : esc_html( Mc_Slider_Settings::$options['mc_slider_title'] ); ?>
 </h3>
-<div class="mc-slider flexslider">
+<div class="mc-slider flexslider <?php //include class with selected option in admin
+    echo ( isset( Mc_Slider_Settings::$options['mc_slider_style']) ) ? esc_attr(Mc_Slider_Settings::$options['mc_slider_style']) : 'style-1';
+?>
+">
     <ul class="slides">
         <?php
         $args = array(
@@ -19,7 +22,13 @@
             $newwindow = get_post_meta( get_the_ID(), 'mc_slider_link_newwindow', true );
         ?>
         <li>
-            <?php the_post_thumbnail( 'full', array( 'class'=>'img-fluid' ) ); ?>
+            <?php if( has_post_thumbnail() ){
+                the_post_thumbnail( 'full', array( 'class'=>'img-fluid' ) ); 
+            }else{
+                echo '<img src="'.MC_SLIDER_URL.'assets/images/default.jpg" class="img-fluid wp-post-image" >';
+            }
+            
+            ?>
             <div class="mcs-container">
                 <div class="slider-details-container">
                     <div class="wrapper">

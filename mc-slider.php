@@ -53,6 +53,7 @@ if( ! class_exists( 'MC_Slider')){
             $MC_Slider_Shortcode = new MC_Slider_Shortcode();
 
             add_action( 'wp_enqueue_scripts', array($this, 'register_scripts' ), 999 );
+            add_action( 'admin_enqueue_scripts', array($this, 'register_admin_scripts' ));
         }
 
         //Define as constantes utilizadas no plugin
@@ -115,6 +116,14 @@ if( ! class_exists( 'MC_Slider')){
             wp_register_script( 'mc-slider-options-jp', MC_SLIDER_URL . 'vendor/flexslider/flexslider.js', array('jquery'), MC_SLIDER_VERSION, true );
             wp_register_style( 'mc-slider-main-css', MC_SLIDER_URL . 'vendor/flexslider/flexslider.css', array(), MC_SLIDER_VERSION, 'all' );
             wp_register_style( 'mc-slider-style-css', MC_SLIDER_URL . 'assets/css/frontend.css', array(), MC_SLIDER_VERSION, 'all' );
+        }
+
+        public function register_admin_scripts(){
+            //enqueue style only mc-slider posts
+            global $typenow;
+            if( $typenow == 'mc-slider' ){
+                wp_enqueue_style( 'mc-slider-admin', MC_SLIDER_URL . 'assets/css/admin.css' );
+            }            
         }
     }
 }
